@@ -1,7 +1,12 @@
 aid: arch-coal
-url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/apis.yml
 modified: '2026-03-23'
 apis: []
 common:
   - type: Website
     url: https://www.arch-coal.com
+description: >-
+  Arch Coal is a producer and marketer of metallurgical and thermal coal sourced from
+  mines in the United States, supplying steel manufacturers, electric utilities, and
+  industrial customers worldwide.
