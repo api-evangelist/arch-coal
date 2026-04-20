@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "filings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {},
+          "date": {},
+          "title": {},
+          "url": {}
+        }
+      }
+    },
+    "totalCount": {
+      "type": "int32",
+      "description": "Total number of filings",
+      "example": 25
+    }
+  },
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-structure/arch-coal-investor-relations-api-filing-list-structure.json",
+  "name": "FilingList"
+}

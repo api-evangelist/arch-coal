@@ -1,0 +1,120 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Arch Coal
+  description: Vocabulary for Arch Coal (Arch Resources) investor relations and financial data covering coal production, earnings, and SEC filings.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+
+operational:
+  apis:
+    - name: Arch Coal Investor Relations API
+      namespace: arch-coal-investor-relations
+      version: '1.0'
+      baseUrl: https://api.archresources.com/v1
+      status: active
+
+  resources:
+    - name: production
+      description: Coal production and sales volume data by type and period
+      apis: [arch-coal-investor-relations]
+      actions: [getQuarterlyProduction]
+    - name: financial
+      description: Earnings, revenue, and financial performance data
+      apis: [arch-coal-investor-relations]
+      actions: [getEarnings]
+    - name: filings
+      description: SEC and regulatory filings index
+      apis: [arch-coal-investor-relations]
+      actions: [listFilings]
+
+  actions:
+    - name: getQuarterlyProduction
+      httpMethod: GET
+      pattern: read
+      description: Retrieve quarterly production data
+    - name: getEarnings
+      httpMethod: GET
+      pattern: read
+      description: Retrieve earnings and financial data
+    - name: listFilings
+      httpMethod: GET
+      pattern: read
+      description: List SEC filings
+
+  schemas:
+    reporting:
+      - name: ProductionReport
+        description: Quarterly coal production by type and mine
+        properties: [year, quarter, totalTons, metCoalTons, thermalCoalTons, averagePrice]
+      - name: EarningsReport
+        description: Quarterly and annual financial performance
+        properties: [year, quarter, revenue, ebitda, netIncome, earningsPerShare]
+      - name: Filing
+        description: SEC regulatory filing record
+        properties: [type, date, title, url]
+
+  parameters:
+    filters:
+      - name: year
+        description: Fiscal year filter
+      - name: quarter
+        description: Quarter filter (1-4)
+      - name: coalType
+        description: Coal type filter (met/thermal)
+      - name: type
+        description: Filing type filter
+
+  enums:
+    coal_type:
+      - met
+      - thermal
+      - all
+    filing_type:
+      - 10-K
+      - 10-Q
+      - 8-K
+      - DEF-14A
+      - SC-13G
+
+  authentication:
+    schemes:
+      - type: apiKey
+        in: header
+        headerName: X-API-Key
+        usedBy: [Arch Coal Investor Relations API]
+
+capability:
+  workflows: []
+  personas:
+    - id: investor
+      name: Investor
+      description: Shareholders and analysts monitoring Arch Coal financial performance
+    - id: researcher
+      name: Commodity Researcher
+      description: Analysts tracking coal production and pricing data
+    - id: esg-analyst
+      name: ESG Analyst
+      description: Environmental, social, and governance data researchers
+  domains:
+    - name: Financial Reporting
+      description: Earnings and revenue reporting for investors
+    - name: Production Data
+      description: Coal production and sales volume metrics
+    - name: Regulatory Compliance
+      description: SEC filings and regulatory disclosure
+  namespaces:
+    - type: consumed
+      namespace: arch-coal-investor-relations
+  binds: []
+
+crossReference:
+  - resource: production
+    operations: [getQuarterlyProduction]
+    personas: [investor, researcher, esg-analyst]
+  - resource: financial
+    operations: [getEarnings]
+    personas: [investor, researcher]
+  - resource: filings
+    operations: [listFilings]
+    personas: [investor, esg-analyst]

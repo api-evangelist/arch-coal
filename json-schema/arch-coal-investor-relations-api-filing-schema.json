@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "SEC filing type",
+      "enum": [
+        "10-K",
+        "10-Q",
+        "8-K",
+        "DEF-14A",
+        "SC-13G"
+      ],
+      "example": "10-K"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Filing date",
+      "example": "2026-02-15"
+    },
+    "title": {
+      "type": "string",
+      "description": "Filing title",
+      "example": "Annual Report for Fiscal Year 2025"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL to SEC EDGAR filing",
+      "example": "https://www.sec.gov/cgi-bin/browse-edgar"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-schema/arch-coal-investor-relations-api-filing-schema.json",
+  "title": "Filing"
+}

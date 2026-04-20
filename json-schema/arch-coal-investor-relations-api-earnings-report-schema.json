@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "year": {
+      "type": "integer",
+      "description": "Fiscal year",
+      "example": 2025
+    },
+    "quarter": {
+      "type": "integer",
+      "description": "Quarter (null for annual)",
+      "example": 4
+    },
+    "revenue": {
+      "type": "integer",
+      "description": "Total revenue in USD",
+      "example": 782000000
+    },
+    "ebitda": {
+      "type": "integer",
+      "description": "Adjusted EBITDA in USD",
+      "example": 245000000
+    },
+    "netIncome": {
+      "type": "integer",
+      "description": "Net income in USD",
+      "example": 198000000
+    },
+    "earningsPerShare": {
+      "type": "number",
+      "description": "Diluted earnings per share in USD",
+      "example": 12.45
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-schema/arch-coal-investor-relations-api-earnings-report-schema.json",
+  "title": "EarningsReport"
+}

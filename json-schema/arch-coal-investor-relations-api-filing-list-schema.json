@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "filings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {},
+          "date": {},
+          "title": {},
+          "url": {}
+        }
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of filings",
+      "example": 25
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-schema/arch-coal-investor-relations-api-filing-list-schema.json",
+  "title": "FilingList"
+}

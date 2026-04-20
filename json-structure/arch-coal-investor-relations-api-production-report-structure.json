@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "year": {
+      "type": "int32",
+      "description": "Fiscal year",
+      "example": 2025
+    },
+    "quarter": {
+      "type": "int32",
+      "description": "Quarter",
+      "example": 4
+    },
+    "totalTons": {
+      "type": "int32",
+      "description": "Total coal production in short tons",
+      "example": 5800000
+    },
+    "metCoalTons": {
+      "type": "int32",
+      "description": "Metallurgical coal production in short tons",
+      "example": 4100000
+    },
+    "thermalCoalTons": {
+      "type": "int32",
+      "description": "Thermal coal production in short tons",
+      "example": 1700000
+    },
+    "averagePrice": {
+      "type": "double",
+      "description": "Average realized price per short ton in USD",
+      "example": 172.5
+    }
+  },
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-structure/arch-coal-investor-relations-api-production-report-structure.json",
+  "name": "ProductionReport"
+}

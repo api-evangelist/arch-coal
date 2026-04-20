@@ -1,0 +1,288 @@
+openapi: 3.0.3
+info:
+  title: Arch Coal Investor Relations API
+  description: >-
+    The Arch Coal Investor Relations API provides access to financial data, SEC filings,
+    coal production reports, and market information for Arch Coal (Arch Resources).
+    This API reflects public financial data available through investor relations portals.
+  version: "1.0"
+  x-generated-from: documentation
+  contact:
+    name: Arch Coal Investor Relations
+    url: https://archresources.com/investor-relations/
+servers:
+  - url: https://api.archresources.com/v1
+    description: Arch Resources API
+tags:
+  - name: Production
+    description: Coal production and sales volume data
+  - name: Financial
+    description: Financial performance metrics
+  - name: Filings
+    description: SEC and regulatory filings
+paths:
+  /production/quarterly:
+    get:
+      operationId: getQuarterlyProduction
+      summary: Arch Coal Get Quarterly Production
+      description: Retrieve quarterly coal production and sales volume data by mine and coal type.
+      tags:
+        - Production
+      parameters:
+        - name: year
+          in: query
+          description: Fiscal year
+          schema:
+            type: integer
+          example: 2025
+        - name: quarter
+          in: query
+          description: Quarter (1-4)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 4
+          example: 4
+        - name: coalType
+          in: query
+          description: Filter by coal type
+          schema:
+            type: string
+            enum: [met, thermal, all]
+          example: met
+      responses:
+        '200':
+          description: Quarterly production data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductionReport'
+              examples:
+                GetQuarterlyProduction200Example:
+                  summary: Default getQuarterlyProduction 200 response
+                  x-microcks-default: true
+                  value:
+                    year: 2025
+                    quarter: 4
+                    totalTons: 5800000
+                    metCoalTons: 4100000
+                    thermalCoalTons: 1700000
+                    averagePrice: 172.50
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - apiKey: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /financial/earnings:
+    get:
+      operationId: getEarnings
+      summary: Arch Coal Get Earnings Data
+      description: Retrieve quarterly and annual earnings data including revenue, EBITDA, and net income.
+      tags:
+        - Financial
+      parameters:
+        - name: year
+          in: query
+          description: Fiscal year
+          schema:
+            type: integer
+          example: 2025
+        - name: quarter
+          in: query
+          description: Quarter (1-4), omit for annual
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 4
+          example: 4
+      responses:
+        '200':
+          description: Earnings data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningsReport'
+              examples:
+                GetEarnings200Example:
+                  summary: Default getEarnings 200 response
+                  x-microcks-default: true
+                  value:
+                    year: 2025
+                    quarter: 4
+                    revenue: 782000000
+                    ebitda: 245000000
+                    netIncome: 198000000
+                    earningsPerShare: 12.45
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - apiKey: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /filings:
+    get:
+      operationId: listFilings
+      summary: Arch Coal List SEC Filings
+      description: List SEC filings including 10-K, 10-Q, 8-K, and proxy statements.
+      tags:
+        - Filings
+      parameters:
+        - name: type
+          in: query
+          description: Filing type
+          schema:
+            type: string
+            enum: [10-K, 10-Q, 8-K, DEF-14A, SC-13G]
+          example: 10-K
+        - name: year
+          in: query
+          description: Filing year
+          schema:
+            type: integer
+          example: 2025
+      responses:
+        '200':
+          description: List of SEC filings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingList'
+              examples:
+                ListFilings200Example:
+                  summary: Default listFilings 200 response
+                  x-microcks-default: true
+                  value:
+                    filings:
+                      - type: 10-K
+                        date: "2026-02-15"
+                        title: "Annual Report for Fiscal Year 2025"
+                        url: "https://www.sec.gov/cgi-bin/browse-edgar"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - apiKey: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for Arch Coal investor data access
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: Unauthorized
+        code:
+          type: integer
+          description: Error code
+          example: 401
+    ProductionReport:
+      type: object
+      properties:
+        year:
+          type: integer
+          description: Fiscal year
+          example: 2025
+        quarter:
+          type: integer
+          description: Quarter
+          example: 4
+        totalTons:
+          type: integer
+          description: Total coal production in short tons
+          example: 5800000
+        metCoalTons:
+          type: integer
+          description: Metallurgical coal production in short tons
+          example: 4100000
+        thermalCoalTons:
+          type: integer
+          description: Thermal coal production in short tons
+          example: 1700000
+        averagePrice:
+          type: number
+          description: Average realized price per short ton in USD
+          example: 172.50
+    EarningsReport:
+      type: object
+      properties:
+        year:
+          type: integer
+          description: Fiscal year
+          example: 2025
+        quarter:
+          type: integer
+          description: Quarter (null for annual)
+          example: 4
+        revenue:
+          type: integer
+          description: Total revenue in USD
+          example: 782000000
+        ebitda:
+          type: integer
+          description: Adjusted EBITDA in USD
+          example: 245000000
+        netIncome:
+          type: integer
+          description: Net income in USD
+          example: 198000000
+        earningsPerShare:
+          type: number
+          description: Diluted earnings per share in USD
+          example: 12.45
+    Filing:
+      type: object
+      properties:
+        type:
+          type: string
+          description: SEC filing type
+          enum: [10-K, 10-Q, 8-K, DEF-14A, SC-13G]
+          example: 10-K
+        date:
+          type: string
+          format: date
+          description: Filing date
+          example: "2026-02-15"
+        title:
+          type: string
+          description: Filing title
+          example: Annual Report for Fiscal Year 2025
+        url:
+          type: string
+          description: URL to SEC EDGAR filing
+          example: https://www.sec.gov/cgi-bin/browse-edgar
+    FilingList:
+      type: object
+      properties:
+        filings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filing'
+        totalCount:
+          type: integer
+          description: Total number of filings
+          example: 25
+security:
+  - apiKey: []

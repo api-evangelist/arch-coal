@@ -1,0 +1,99 @@
+rules:
+  info-title-arch-coal-prefix:
+    description: API title must start with "Arch Coal"
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^Arch Coal"
+  info-description-required:
+    description: API must have a description
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+  openapi-version-3:
+    description: Use OpenAPI 3.0.x
+    severity: error
+    given: "$"
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.0\\."
+  servers-defined:
+    description: Server URLs must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: "$.servers[*]"
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+  operation-summary-required:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: truthy
+  operation-summary-prefix:
+    description: Operation summaries should start with "Arch Coal"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^Arch Coal"
+  operation-tags-required:
+    description: All operations must have tags
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+  parameter-description-required:
+    description: Parameters must have descriptions
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+  response-success-required:
+    description: Operations must define success responses
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes must be defined
+    severity: error
+    given: "$.components"
+    then:
+      field: securitySchemes
+      function: truthy
+  get-no-request-body:
+    description: GET operations must not have request bodies
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy
