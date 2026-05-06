@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Arch Coal Investor Relations API
+  description: The Arch Coal Investor Relations API provides access to financial data, SEC filings, coal production reports,
+    and market information for Arch Coal (Arch Resources). This API reflects public financial data available through investor
+    relations portals.
+  tags:
+  - Arch
+  - Coal
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: arch-coal
+    baseUri: https://api.archresources.com/v1
+    description: Arch Coal Investor Relations API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: X-API-Key
+      value: '{{ARCH_COAL_TOKEN}}'
+    resources:
+    - name: production-quarterly
+      path: /production/quarterly
+      operations:
+      - name: getquarterlyproduction
+        method: GET
+        description: Arch Coal Get Quarterly Production
+        inputParameters:
+        - name: year
+          in: query
+          type: integer
+          description: Fiscal year
+        - name: quarter
+          in: query
+          type: integer
+          description: Quarter (1-4)
+        - name: coalType
+          in: query
+          type: string
+          description: Filter by coal type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: financial-earnings
+      path: /financial/earnings
+      operations:
+      - name: getearnings
+        method: GET
+        description: Arch Coal Get Earnings Data
+        inputParameters:
+        - name: year
+          in: query
+          type: integer
+          description: Fiscal year
+        - name: quarter
+          in: query
+          type: integer
+          description: Quarter (1-4), omit for annual
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: filings
+      path: /filings
+      operations:
+      - name: listfilings
+        method: GET
+        description: Arch Coal List SEC Filings
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filing type
+        - name: year
+          in: query
+          type: integer
+          description: Filing year
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: arch-coal-rest
+    description: REST adapter for Arch Coal Investor Relations API.
+    resources:
+    - path: /production/quarterly
+      name: getquarterlyproduction
+      operations:
+      - method: GET
+        name: getquarterlyproduction
+        description: Arch Coal Get Quarterly Production
+        call: arch-coal.getquarterlyproduction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /financial/earnings
+      name: getearnings
+      operations:
+      - method: GET
+        name: getearnings
+        description: Arch Coal Get Earnings Data
+        call: arch-coal.getearnings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /filings
+      name: listfilings
+      operations:
+      - method: GET
+        name: listfilings
+        description: Arch Coal List SEC Filings
+        call: arch-coal.listfilings
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: arch-coal-mcp
+    transport: http
+    description: MCP adapter for Arch Coal Investor Relations API for AI agent use.
+    tools:
+    - name: getquarterlyproduction
+      description: Arch Coal Get Quarterly Production
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: arch-coal.getquarterlyproduction
+      with:
+        year: tools.year
+        quarter: tools.quarter
+        coalType: tools.coalType
+      inputParameters:
+      - name: year
+        type: integer
+        description: Fiscal year
+      - name: quarter
+        type: integer
+        description: Quarter (1-4)
+      - name: coalType
+        type: string
+        description: Filter by coal type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getearnings
+      description: Arch Coal Get Earnings Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: arch-coal.getearnings
+      with:
+        year: tools.year
+        quarter: tools.quarter
+      inputParameters:
+      - name: year
+        type: integer
+        description: Fiscal year
+      - name: quarter
+        type: integer
+        description: Quarter (1-4), omit for annual
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listfilings
+      description: Arch Coal List SEC Filings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: arch-coal.listfilings
+      with:
+        type: tools.type
+        year: tools.year
+      inputParameters:
+      - name: type
+        type: string
+        description: Filing type
+      - name: year
+        type: integer
+        description: Filing year
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    ARCH_COAL_TOKEN: ARCH_COAL_TOKEN
