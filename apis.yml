@@ -1,7 +1,7 @@
 aid: arch-coal
 name: Arch Coal
-description: Arch Coal (now Arch Resources) is a Fortune 500 producer and marketer of metallurgical and thermal coal from mines in the United States, supplying steel manufacturers, electric utilities,
-  and industrial customers worldwide.
+description: Arch Coal (now Arch Resources) is a Fortune 500 producer and marketer of metallurgical and thermal coal from
+  mines in the United States, supplying steel manufacturers, electric utilities, and industrial customers worldwide.
 type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -13,12 +13,13 @@ tags:
 - Fortune 500
 url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/apis.yml
 created: '2026-03-23'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
 - aid: arch-coal:arch-coal-investor-relations
   name: Arch Coal Investor Relations
-  description: Arch Coal provides investor relations data including SEC filings, financial reports, coal production data, and market information for shareholders and analysts.
+  description: Arch Coal provides investor relations data including SEC filings, financial reports, coal production data,
+    and market information for shareholders and analysts.
   humanURL: https://archresources.com/investor-relations/
   tags:
   - Investor Relations
@@ -30,6 +31,12 @@ apis:
     url: https://archresources.com/investor-relations/
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/openapi/arch-coal-investor-relations-api.yaml
+  - type: NaftikoCapability
+    url: capabilities/investor-relations-filings.yaml
+  - type: NaftikoCapability
+    url: capabilities/investor-relations-financial.yaml
+  - type: NaftikoCapability
+    url: capabilities/investor-relations-production.yaml
 common:
 - type: Portal
   url: https://www.arch-coal.com/

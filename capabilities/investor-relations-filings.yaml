@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Arch Coal Investor Relations API — Filings
+  description: 'Arch Coal Investor Relations API — Filings. 1 operations. Lead operation: Arch Coal List SEC Filings. Self-contained
+    Naftiko capability covering one Arch Coal business surface.'
+  tags:
+  - Arch Coal
+  - Filings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARCH_COAL_API_KEY: ARCH_COAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: investor-relations-filings
+    baseUri: https://api.archresources.com/v1
+    description: Arch Coal Investor Relations API — Filings business capability. Self-contained, no shared references.
+    resources:
+    - name: filings
+      path: /filings
+      operations:
+      - name: listfilings
+        method: GET
+        description: Arch Coal List SEC Filings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filing type
+        - name: year
+          in: query
+          type: integer
+          description: Filing year
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.ARCH_COAL_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: investor-relations-filings-rest
+    port: 8080
+    description: REST adapter for Arch Coal Investor Relations API — Filings. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/filings
+      name: filings
+      description: REST surface for filings.
+      operations:
+      - method: GET
+        name: listfilings
+        description: Arch Coal List SEC Filings
+        call: investor-relations-filings.listfilings
+        with:
+          type: rest.type
+          year: rest.year
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: investor-relations-filings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Arch Coal Investor Relations API — Filings. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: arch-coal-list-sec-filings
+      description: Arch Coal List SEC Filings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: investor-relations-filings.listfilings
+      with:
+        type: tools.type
+        year: tools.year
+      outputParameters:
+      - type: object
+        mapping: $.
