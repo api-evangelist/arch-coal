@@ -76,6 +76,8 @@ common:
   url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/vocabulary/arch-coal-vocabulary.yaml
 - type: JSONLD
   url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-ld/arch-coal-investor-relations-api-context.jsonld
+- type: LLMsTxt
+  url: https://archresources.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
