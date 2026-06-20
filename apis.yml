@@ -3,7 +3,7 @@ name: Arch Coal
 description: Arch Coal (now Arch Resources) is a Fortune 500 producer and marketer of metallurgical and thermal coal from
   mines in the United States, supplying steel manufacturers, electric utilities, and industrial customers worldwide.
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Mining
 - Coal
