@@ -31,11 +31,11 @@ apis:
     url: https://archresources.com/investor-relations/
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/openapi/arch-coal-investor-relations-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/investor-relations-filings.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/investor-relations-financial.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/investor-relations-production.yaml
 common:
 - type: Portal
@@ -76,7 +76,7 @@ common:
   url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/vocabulary/arch-coal-vocabulary.yaml
 - type: JSONLD
   url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/json-ld/arch-coal-investor-relations-api-context.jsonld
-- type: LLMsTxt
+- type: LlmsText
   url: https://archresources.com/llms.txt
 maintainers:
 - FN: Kin Lane
