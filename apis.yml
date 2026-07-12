@@ -38,6 +38,10 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/investor-relations-production.yaml
 common:
+- type: DomainSecurity
+  url: security/arch-coal-domain-security.yml
+- type: Authentication
+  url: authentication/arch-coal-authentication.yml
 - type: Portal
   url: https://www.arch-coal.com/
 - type: Features

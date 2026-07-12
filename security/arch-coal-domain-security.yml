@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.arch-coal.com
+  https: false
+- host: archresources.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 11 19:52:35 2027 GMT
+  hsts: false
+- host: api.archresources.com
+  https: false
+domains:
+- domain: arch-coal.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+- domain: archresources.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: reject
