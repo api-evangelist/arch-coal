@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Arch Coal Investor Relations Filings API
+  description: The Arch Coal Investor Relations API provides access to financial data, SEC filings, coal production reports, and market information for Arch Coal (Arch Resources). This API reflects public financial data available through investor relations portals.
+  version: '1.0'
+  x-generated-from: documentation
+  contact:
+    name: Arch Coal Investor Relations
+    url: https://archresources.com/investor-relations/
+servers:
+- url: https://api.archresources.com/v1
+  description: Arch Resources API
+security:
+- apiKey: []
+tags:
+- name: Filings
+  description: SEC and regulatory filings
+paths:
+  /filings:
+    get:
+      operationId: listFilings
+      summary: Arch Coal List SEC Filings
+      description: List SEC filings including 10-K, 10-Q, 8-K, and proxy statements.
+      tags:
+      - Filings
+      parameters:
+      - name: type
+        in: query
+        description: Filing type
+        schema:
+          type: string
+          enum:
+          - 10-K
+          - 10-Q
+          - 8-K
+          - DEF-14A
+          - SC-13G
+        example: 10-K
+      - name: year
+        in: query
+        description: Filing year
+        schema:
+          type: integer
+        example: 2025
+      responses:
+        '200':
+          description: List of SEC filings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingList'
+              examples:
+                ListFilings200Example:
+                  summary: Default listFilings 200 response
+                  x-microcks-default: true
+                  value:
+                    filings:
+                    - type: 10-K
+                      date: '2026-02-15'
+                      title: Annual Report for Fiscal Year 2025
+                      url: https://www.sec.gov/cgi-bin/browse-edgar
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - apiKey: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    FilingList:
+      type: object
+      properties:
+        filings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filing'
+        totalCount:
+          type: integer
+          description: Total number of filings
+          example: 25
+    Filing:
+      type: object
+      properties:
+        type:
+          type: string
+          description: SEC filing type
+          enum:
+          - 10-K
+          - 10-Q
+          - 8-K
+          - DEF-14A
+          - SC-13G
+          example: 10-K
+        date:
+          type: string
+          format: date
+          description: Filing date
+          example: '2026-02-15'
+        title:
+          type: string
+          description: Filing title
+          example: Annual Report for Fiscal Year 2025
+        url:
+          type: string
+          description: URL to SEC EDGAR filing
+          example: https://www.sec.gov/cgi-bin/browse-edgar
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: Unauthorized
+        code:
+          type: integer
+          description: Error code
+          example: 401
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for Arch Coal investor data access

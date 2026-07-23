@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Arch Coal Investor Relations Filings Production API
+  description: The Arch Coal Investor Relations API provides access to financial data, SEC filings, coal production reports, and market information for Arch Coal (Arch Resources). This API reflects public financial data available through investor relations portals.
+  version: '1.0'
+  x-generated-from: documentation
+  contact:
+    name: Arch Coal Investor Relations
+    url: https://archresources.com/investor-relations/
+servers:
+- url: https://api.archresources.com/v1
+  description: Arch Resources API
+security:
+- apiKey: []
+tags:
+- name: Production
+  description: Coal production and sales volume data
+paths:
+  /production/quarterly:
+    get:
+      operationId: getQuarterlyProduction
+      summary: Arch Coal Get Quarterly Production
+      description: Retrieve quarterly coal production and sales volume data by mine and coal type.
+      tags:
+      - Production
+      parameters:
+      - name: year
+        in: query
+        description: Fiscal year
+        schema:
+          type: integer
+        example: 2025
+      - name: quarter
+        in: query
+        description: Quarter (1-4)
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4
+        example: 4
+      - name: coalType
+        in: query
+        description: Filter by coal type
+        schema:
+          type: string
+          enum:
+          - met
+          - thermal
+          - all
+        example: met
+      responses:
+        '200':
+          description: Quarterly production data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductionReport'
+              examples:
+                GetQuarterlyProduction200Example:
+                  summary: Default getQuarterlyProduction 200 response
+                  x-microcks-default: true
+                  value:
+                    year: 2025
+                    quarter: 4
+                    totalTons: 5800000
+                    metCoalTons: 4100000
+                    thermalCoalTons: 1700000
+                    averagePrice: 172.5
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - apiKey: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ProductionReport:
+      type: object
+      properties:
+        year:
+          type: integer
+          description: Fiscal year
+          example: 2025
+        quarter:
+          type: integer
+          description: Quarter
+          example: 4
+        totalTons:
+          type: integer
+          description: Total coal production in short tons
+          example: 5800000
+        metCoalTons:
+          type: integer
+          description: Metallurgical coal production in short tons
+          example: 4100000
+        thermalCoalTons:
+          type: integer
+          description: Thermal coal production in short tons
+          example: 1700000
+        averagePrice:
+          type: number
+          description: Average realized price per short ton in USD
+          example: 172.5
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: Unauthorized
+        code:
+          type: integer
+          description: Error code
+          example: 401
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for Arch Coal investor data access
