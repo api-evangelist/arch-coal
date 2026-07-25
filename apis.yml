@@ -10,8 +10,10 @@ description: >-
   employees, and holds stakes in East Coast marine export terminals. Core
   Natural Resources does not publish a public developer API. Its external
   digital surface is a corporate website at corenaturalresources.com plus a
-  separate investor relations portal; machine-readable company data is
-  available only through third-party channels such as the SEC EDGAR APIs.
+  separate investor relations portal, both serving HTML and PDF only — the
+  investor portal's /rss and /feed paths were probed on 2026-07-25 and every
+  one returns HTML, not XML. Machine-readable company data is available only
+  through third-party channels, namely the SEC's own EDGAR APIs.
 type: Index
 accessModel:
   pricing: unknown
@@ -43,25 +45,6 @@ tags:
 - Investor Relations
 - Fortune 500
 apis:
-- aid: arch-coal:core-investor-relations
-  name: Core Natural Resources Investor Relations
-  description: >-
-    The investor-facing digital channel for Core Natural Resources, the company
-    Arch Coal / Arch Resources became after the January 2025 merger with CONSOL
-    Energy. It publishes SEC filings, quarterly earnings releases, investor
-    presentations, and governance documents as HTML and PDF. There is no
-    investor data API, no developer portal, and no machine-readable feed
-    published by the company itself.
-  humanURL: https://investors.corenaturalresources.com/
-  tags:
-  - Investor Relations
-  - Filings
-  - Financial
-  properties:
-  - type: Documentation
-    url: https://investors.corenaturalresources.com/
-  - type: Website
-    url: https://corenaturalresources.com/investors/
 - aid: arch-coal:sec-edgar-filings
   name: SEC EDGAR Filings (Core Natural Resources, CIK 1710366)
   description: >-
@@ -81,6 +64,19 @@ apis:
     url: https://www.sec.gov/search-filings/edgar-application-programming-interfaces
   - type: APIReference
     url: https://data.sec.gov/submissions/CIK0001710366.json
+  x-evidence:
+    verified: '2026-07-25'
+    method: fetched documentation and called the endpoint
+    documentation: >-
+      The SEC's EDGAR APIs page documents RESTful JSON APIs on data.sec.gov —
+      https://data.sec.gov/submissions/CIK##########.json plus the XBRL
+      companyconcept, companyfacts, and frames APIs. No authentication or API
+      key required; a declared User-Agent and a 10-request-per-second ceiling
+      are the stated fair-access terms.
+    endpoint_check: >-
+      GET https://data.sec.gov/submissions/CIK0001710366.json returned HTTP 200
+      with JSON naming "Core Natural Resources, Inc.", ticker CNR, and the
+      former name "CONSOL Energy Inc." through 2025-01-10.
 common:
 - type: Website
   url: https://corenaturalresources.com/

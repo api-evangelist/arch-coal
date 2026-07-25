@@ -28,15 +28,9 @@ Arch Coal was a St. Louis-based producer and marketer of metallurgical and therm
 
 ## API Surface
 
-**Core Natural Resources does not publish a public developer API.** There is no developer portal, no documented endpoints, and no machine-readable feed published by the company. Its external digital surface is a corporate website plus a separate investor relations portal, both publishing HTML and PDF.
+**Core Natural Resources does not publish a public developer API.** There is no developer portal, no documented endpoints, and no machine-readable feed published by the company. Its external digital surface is a corporate website plus a separate investor relations portal, both serving HTML and PDF — the investor portal's `/rss`, `/feed`, and `/*/rss` paths were probed on 2026-07-25 and every one returns HTML, not XML. The investor relations portal is therefore listed as a website surface below, **not** as an API.
 
 The only real programmatic access to this company's data is the U.S. Securities and Exchange Commission's own EDGAR APIs, which cover Core Natural Resources under **CIK 0001710366** (the former CONSOL Energy Inc. registrant, renamed in January 2025).
-
-### Core Natural Resources Investor Relations
-
-SEC filings, quarterly earnings releases, investor presentations, and governance documents, published as HTML and PDF.
-
-**Human URL:** [https://investors.corenaturalresources.com/](https://investors.corenaturalresources.com/)
 
 ### SEC EDGAR Filings (Core Natural Resources, CIK 1710366)
 
@@ -44,6 +38,8 @@ Third-party government API — filing history as JSON.
 
 - [EDGAR APIs documentation](https://www.sec.gov/search-filings/edgar-application-programming-interfaces)
 - [https://data.sec.gov/submissions/CIK0001710366.json](https://data.sec.gov/submissions/CIK0001710366.json)
+
+**Evidence, verified 2026-07-25.** The documentation page describes RESTful JSON APIs on `data.sec.gov` — `https://data.sec.gov/submissions/CIK##########.json` plus the XBRL `companyconcept`, `companyfacts`, and `frames` APIs, no authentication required, with a declared User-Agent and a 10-requests-per-second fair-access ceiling. Calling the endpoint returned HTTP 200 with JSON naming "Core Natural Resources, Inc.", ticker CNR, and the former name "CONSOL Energy Inc." through 2025-01-10.
 
 ## Common Properties
 
