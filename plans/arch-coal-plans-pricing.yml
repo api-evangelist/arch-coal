@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Arch Coal
 providerId: arch-coal
 created: '2026-05-04'
-modified: '2026-05-05'
+modified: '2026-07-25'
 reconciled: false
 tags:
 - Mining
@@ -12,13 +12,18 @@ tags:
 - Metallurgical Coal
 - Thermal Coal
 - Energy
+- Core Natural Resources
 - Fortune 500
-description: Arch Coal does not publish a public API plans / pricing page. This artifact records the absence
-  of a self-serve commercial surface; see notes for research findings.
-notes: Arch Coal (now Arch Resources) does not operate a commercial API program. Investor-relations data
-  is published as filings and reports rather than through a paid API.
+description: Core Natural Resources — the company Arch Coal / Arch Resources became after the January
+  2025 merger with CONSOL Energy — does not publish a public API plans / pricing page. This artifact
+  records the absence of a self-serve commercial surface; see notes for research findings.
+notes: Arch Coal became Arch Resources in 2020 and merged with CONSOL Energy in January 2025 to form
+  Core Natural Resources (NYSE:CNR). The combined company does not operate a commercial API program.
+  Investor-relations data is published as filings and reports; the only machine-readable access to
+  company data is the SEC's own EDGAR APIs.
 sources:
-- https://archresources.com
+- https://corenaturalresources.com/
+- https://investors.corenaturalresources.com/
 plans:
 - id: arch-coal-contact-sales
   name: Contact Sales

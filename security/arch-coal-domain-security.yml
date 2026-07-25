@@ -1,18 +1,41 @@
-generated: '2026-07-11'
+generated: '2026-07-25'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: live DNS/TLS/HTTP probes of the corenaturalresources.com properties in apis.yml
+notes: Arch Coal / Arch Resources is now Core Natural Resources (NYSE:CNR) following the January
+  2025 merger with CONSOL Energy. The arch-coal.com domain no longer resolves. archresources.com
+  still answers but the corporate presence has moved to corenaturalresources.com.
 hosts:
-- host: www.arch-coal.com
-  https: false
+- host: corenaturalresources.com
+  https: true
+  http_status: 200
+  server: Apache
+  cert_issuer: Let's Encrypt
+  cert_expires: Oct 12 05:02:30 2026 GMT
+  hsts: false
+- host: www.corenaturalresources.com
+  https: true
+  http_status: 301
+  redirects_to: https://corenaturalresources.com/
+- host: investors.corenaturalresources.com
+  https: true
+  http_status: 200
+  server: cloudflare
+  cert_issuer: Google Trust Services
+  cert_expires: Sep 27 13:42:12 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  x_frame_options: SAMEORIGIN
 - host: archresources.com
   https: true
-  tls_version: TLSv1.3
-  cert_expires: Jan 11 19:52:35 2027 GMT
-  hsts: false
-- host: api.archresources.com
+  http_status: 200
+  legacy: true
+- host: www.arch-coal.com
   https: false
+  resolves: false
+  legacy: true
 domains:
-- domain: arch-coal.com
+- domain: corenaturalresources.com
   dnssec: false
   caa: []
   spf: false
@@ -23,3 +46,16 @@ domains:
   spf: false
   dmarc: true
   dmarc_policy: reject
+  legacy: true
+- domain: arch-coal.com
+  resolves: false
+  legacy: true
+findings:
+- severity: medium
+  finding: The primary corporate domain corenaturalresources.com publishes no SPF and no DMARC
+    record, leaving the merged company's domain open to email spoofing. The legacy archresources.com
+    domain still has DMARC at p=reject.
+- severity: low
+  finding: No CAA records and no DNSSEC on corenaturalresources.com.
+- severity: low
+  finding: The corporate site does not send HSTS; the investor relations portal does.
