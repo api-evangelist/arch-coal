@@ -42,6 +42,8 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arch-coal.png
 url: https://raw.githubusercontent.com/api-evangelist/arch-coal/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
 created: '2026-03-23'
 modified: '2026-07-25'
 specificationVersion: '0.23'
