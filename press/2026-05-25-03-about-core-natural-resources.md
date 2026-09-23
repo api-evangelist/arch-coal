@@ -1,7 +1,9 @@
 ---
 title: About Core Natural Resources
 url: https://corenaturalresources.com/about-core/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Arch Coal" press release artificial intelligence'
 position: 3
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Q4 2018 Arch Coal Inc Earnings Call Transcript
 url: https://www.gurufocus.com/news/2231894/q4-2018-arch-coal-inc-earnings-call-transcript?mobile=true
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Arch Coal" press release artificial intelligence'
 position: 5
 source: serpapi-google

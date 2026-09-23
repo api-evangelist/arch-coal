@@ -1,7 +1,9 @@
 ---
 title: Arch Resources winding down massive US coal mine as ...
 url: https://www.spglobal.com/market-intelligence/en/news-insights/articles/2021/2/arch-resources-winding-down-massive-us-coal-mine-as-customer-base-dwindles-62788531
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Arch Coal" press release artificial intelligence'
 position: 1
 source: serpapi-google
