@@ -95,6 +95,12 @@ apis:
       with JSON naming "Core Natural Resources, Inc.", ticker CNR, and the
       former name "CONSOL Energy Inc." through 2025-01-10.
 common:
+- type: Plans
+  url: plans/arch-coal-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/arch-coal-rate-limits.yml
+- type: FinOps
+  url: finops/arch-coal-finops.yml
 - type: Website
   url: https://corenaturalresources.com/
 - type: Portal
