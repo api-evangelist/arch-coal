@@ -1,4 +1,4 @@
-# Arch Coal (arch-coal)
+# Arch Coal
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,97 +64,103 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Arch Coal was a St. Louis-based producer and marketer of metallurgical and thermal coal, renamed **Arch Resources** in 2020. In January 2025 Arch Resources merged with CONSOL Energy in a merger of equals to form **Core Natural Resources, Inc. (NYSE: CNR)**, headquartered in Canonsburg, Pennsylvania. This profile now tracks the surviving company.
+Arch Coal was a St. Louis-based producer and marketer of metallurgical and thermal coal, renamed Arch Resources in 2020. In January 2025 Arch Resources merged with CONSOL Energy in a merger of equals to form Core Natural Resources, Inc. (NYSE: CNR), headquartered in Canonsburg, Pennsylvania. The combined company operates the Pennsylvania Mining Complex, Leer, Leer South, West Elk, Black Thunder, and other mines across six U.S. states with 5,000+ employees, and holds stakes in East Coast marine export terminals. Core Natural Resources does not publish a public developer API. Its external digital surface is a corporate website at corenaturalresources.com plus a separate investor relations portal, both serving HTML and PDF only — the investor portal's /rss and /feed paths were probed on 2026-07-25 and every one returns HTML, not XML. Machine-readable company data is available only through third-party channels, namely the SEC's own EDGAR APIs.
 
-**URL:** [https://corenaturalresources.com/](https://corenaturalresources.com/)
+**Areas:** Mining · Coal · Metallurgical Coal · Thermal Coal · Energy · Core Natural Resources · Investor Relations · Fortune 500
 
-**Legacy URL:** [https://archresources.com/](https://archresources.com/) — arch-coal.com no longer resolves.
+## Arch Coal on APIs.io
 
-**Related profile:** [consol-energy](https://github.com/api-evangelist/consol-energy) — the other half of the merger.
+Everything profiled for Arch Coal is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/arch-coal/](https://apis.io/providers/arch-coal/)** — or go straight to one of the APIs or properties below.
 
-## Lineage
+### APIs (1)
 
-| Year | Entity |
-|------|--------|
-| 1969 | Arch Mineral founded |
-| 1997 | Arch Mineral + Ashland Coal merge to form Arch Coal |
-| 2020 | Arch Coal renamed Arch Resources |
-| 2025 | Arch Resources + CONSOL Energy (est. 1864) merge to form Core Natural Resources |
+- [SEC EDGAR Filings (Core Natural Resources, CIK 1710366)](https://apis.io/apis/arch-coal/sec-edgar-filings/) — Machine-readable filing data for Core Natural Resources is available from the U.S. Securities and Exchange Commission, not from the company. The SEC EDGAR…
 
-## Tags:
+### Published properties
 
- - Mining, Coal, Metallurgical Coal, Thermal Coal, Energy, Core Natural Resources, Investor Relations, Fortune 500
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Security (1)
 
-- **Created:** 2026-03-23
-- **Modified:** 2026-07-25
+Authentication, trust centre, and vulnerability disclosure.
 
-## API Surface
+- [Arch Coal Domain Security](https://apis.io/security/arch-coal/arch-coal-domain-security/)
 
-**Core Natural Resources does not publish a public developer API.** There is no developer portal, no documented endpoints, and no machine-readable feed published by the company. Its external digital surface is a corporate website plus a separate investor relations portal, both serving HTML and PDF — the investor portal's `/rss`, `/feed`, and `/*/rss` paths were probed on 2026-07-25 and every one returns HTML, not XML. The investor relations portal is therefore listed as a website surface below, **not** as an API.
+#### Plans and pricing (1)
 
-The only real programmatic access to this company's data is the U.S. Securities and Exchange Commission's own EDGAR APIs, which cover Core Natural Resources under **CIK 0001710366** (the former CONSOL Energy Inc. registrant, renamed in January 2025).
+Published plans, tiers and prices.
 
-### SEC EDGAR Filings (Core Natural Resources, CIK 1710366)
+- [Arch Coal Plans Pricing](https://apis.io/plans/arch-coal/arch-coal-plans-pricing/)
 
-Third-party government API — filing history as JSON.
+#### Rate limits (1)
 
-- [EDGAR APIs documentation](https://www.sec.gov/search-filings/edgar-application-programming-interfaces)
-- [https://data.sec.gov/submissions/CIK0001710366.json](https://data.sec.gov/submissions/CIK0001710366.json)
+Published request limits.
 
-**Evidence, verified 2026-07-25.** The documentation page describes RESTful JSON APIs on `data.sec.gov` — `https://data.sec.gov/submissions/CIK##########.json` plus the XBRL `companyconcept`, `companyfacts`, and `frames` APIs, no authentication required, with a declared User-Agent and a 10-requests-per-second fair-access ceiling. Calling the endpoint returned HTTP 200 with JSON naming "Core Natural Resources, Inc.", ticker CNR, and the former name "CONSOL Energy Inc." through 2025-01-10.
+- [Arch Coal Rate Limits](https://apis.io/rate-limits/arch-coal/arch-coal-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Arch Coal Finops](https://apis.io/finops/arch-coal/arch-coal-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://corenaturalresources.com/)
-- [Investors](https://corenaturalresources.com/investors/)
-- [News & Media](https://corenaturalresources.com/news-media/)
-- [Sustainability](https://corenaturalresources.com/sustainability/)
-- [Suppliers](https://corenaturalresources.com/suppliers/)
-- [Careers](https://corenaturalresources.com/careers/)
-- [Contact](https://corenaturalresources.com/contact-us/)
-- [LinkedIn](https://www.linkedin.com/company/core-natural-resources)
+- [Terms of service](https://corenaturalresources.com/arch-terms-and-conditions/)
+- [Privacy policy](https://corenaturalresources.com/privacy-policy/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Metallurgical Coal | Low-Vol (Beckley, Itmann), High-Vol A (Leer, Leer South), and High-Vol B (Mountain Laurel) metallurgical coals for blast furnace steelmaking — roughly 12 million tons annually. |
-| High Calorific Value Thermal Coal | High CV thermal coal from the Pennsylvania Mining Complex and West Elk mine for power generation, cement, and industrial use — roughly 30 million tons annually. |
-| Powder River Basin Thermal Coal | PRB sub-bituminous coal from Black Thunder and Coal Creek mines in Wyoming. |
-| Marine Export Terminals | Ownership stakes in East Coast marine export terminals, with roughly 25 million tons of owned annual export capacity. |
-| CONSOL Innovations | Advanced materials and critical mineral extraction research turning coal-based carbon into products for aerospace and other industries. |
-| SEC Filings and Investor Reporting | Quarterly earnings, production and sales volume reporting, and SEC filings published through the investor relations portal and EDGAR. |
+**Kin Score 16.7** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 26.3 |
 
-| Name | Description |
-|------|-------------|
-| Investment Research | Analyze Core Natural Resources (NYSE:CNR) financial performance, production volumes, and market position through EDGAR filings and investor materials. |
-| Merger and Lineage Tracking | Follow the Arch Coal → Arch Resources → Core Natural Resources lineage, including the CONSOL Energy merger of equals completed January 2025. |
-| ESG and Safety Reporting | Access environmental, safety, and governance disclosures published through the corporate sustainability section. |
-| Supply Chain and Procurement | Steel producers, utilities, and suppliers reference product specifications, terms and conditions, and the Supplier Code of Conduct. |
-| Commodity Market Analysis | Track metallurgical and thermal coal production, export capacity, and sales volumes for commodity market research. |
+**Agent readiness 0.6** — human-only
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| SEC EDGAR | All filings for CIK 0001710366 are available through EDGAR and the SEC's public JSON APIs at data.sec.gov. |
-| NYSE | Shares trade on the New York Stock Exchange under the ticker CNR. |
+**Regulatory alignment 11.5** — Energy & Utilities
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/arch-coal/](https://apis.io/providers/arch-coal/).
 
-- [Domain Security](security/arch-coal-domain-security.yml) — live DNS/TLS/HTTP probe of the corenaturalresources.com properties
-- [Plans & Pricing](plans/arch-coal-plans-pricing.yml) — records the absence of a commercial API surface
-- [Rate Limits](rate-limits/arch-coal-rate-limits.yml) — records the absence of published throttling rules
-- [FinOps](finops/arch-coal-finops.yml) — FOCUS-aligned placeholder
+## How this profile is made
 
-> Note: this repo previously carried generated OpenAPI, JSON Schema, JSON-LD, vocabulary, rules, authentication, and agentic-access artifacts describing "investor relations APIs" at `api.archresources.com`. That host does not exist and the company publishes no API, so those artifacts were removed on 2026-07-25.
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-## Maintainers
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Arch Coal: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-**FN:** Kin Lane
+## Open an issue
 
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/arch-coal/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
