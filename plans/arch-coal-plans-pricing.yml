@@ -1,0 +1,68 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Arch Coal
+providerId: arch-coal
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-07-25'
+reconciled: false
+tags:
+- Mining
+- Coal
+- Metallurgical Coal
+- Thermal Coal
+- Energy
+- Core Natural Resources
+- Fortune 500
+description: Core Natural Resources — the company Arch Coal / Arch Resources became after the January
+  2025 merger with CONSOL Energy — does not publish a public API plans / pricing page. This artifact
+  records the absence of a self-serve commercial surface; see notes for research findings.
+notes: Arch Coal became Arch Resources in 2020 and merged with CONSOL Energy in January 2025 to form
+  Core Natural Resources (NYSE:CNR). The combined company does not operate a commercial API program.
+  Investor-relations data is published as filings and reports; the only machine-readable access to
+  company data is the SEC's own EDGAR APIs.
+sources:
+- https://corenaturalresources.com/
+- https://investors.corenaturalresources.com/
+plans:
+- id: arch-coal-contact-sales
+  name: Contact Sales
+  type: enterprise
+  description: No published self-serve plan. Commercial access is arranged directly with the provider;
+    quotas and pricing are governed by individual customer agreements.
+  entries:
+  - label: API Access
+    name: api_access
+    type: flat
+    metric: varies
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Negotiated Commercial Terms
+  - name: Partner Onboarding
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: Contact Sales
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - per-use
